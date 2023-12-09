@@ -27,13 +27,17 @@ morseCode = {
     "Z": "--..",
 }
 
-with open("originalWords.txt", "r") as f:
-    words = f.read().upper().splitlines()
+wordLength = input("Word length: ")
+morseCodeLength = input("Morse code length: ")
+
+words = []
+with open("allWords.txt", "r") as f:
+    words = [x for x in f.read().upper().splitlines() if len(x) == int(wordLength)]
 
 validWords = []
+
 for word in words:
-    if sum([len(morseCode[x]) for x in word]) == 13:
+    if sum([len(morseCode[x]) for x in word]) == int(morseCodeLength):
         validWords.append(word)
 
-with open("filteredWords.txt", "w") as f:
-    f.write("\n".join(validWords))
+print(*validWords, sep="\n")
