@@ -40,4 +40,7 @@ for word in words:
     if sum([len(morseCode[x]) for x in word]) == int(morseCodeLength):
         validWords.append(word)
 
-print(*validWords, sep="\n")
+with open("filteredWords.txt", "w") as f:
+    f.write("\n".join(validWords))
+
+print(f"Found {len(validWords)} words")
